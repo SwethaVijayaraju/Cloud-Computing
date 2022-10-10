@@ -54,6 +54,6 @@ docker run --rm -it --name mydjango -p 8000:8000 -v "$(pwd)/app:/app" --network 
 ```
 
 ```
-django-admin startproject ap
+django-admin startproject app
 ```
  
