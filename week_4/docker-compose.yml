@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  api:
+    build: ./api/
+    hostname: meals-recommender
+    volumes:
+      - ./api/code:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=api
+    command: flask run -h 0.0.0.0 -p 5000
+  consumer:
+    build: ./consumer/
+    depends_on:
+      - api
+    hostname: meals_frontend
+    volumes:
+      - ./consumer/code:/app
+    ports:
+      - "80:80"
+    environment:
+      - FLASK_APP=consumer
+      - API_HOST=meals-recommender
+      - API_PORT=5000
+      - API_ENDPOINT=/api/v1/recommend_meal
+    command: flask run -h 0.0.0.0 -p 80

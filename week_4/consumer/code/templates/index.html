@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FlaskApp</title>
+    <title>Meals Recommendation</title>
 </head>
-<body>
-    <h1>Hello World!</h1>
-    <h2>Welcome to FlaskApp!</h2>
+<body style="font-family:Noto Sans, sans-serif; text-align: center">
+<div>
+    <h1>Meals Recommendation</h1>
+    <div>Don't know what to eat?</div>
+    <div>Try {{ meal['name'] }} for just ${{ "{:.2f}".format(meal['price']) }}</div>
+</div>
 </body>
 </html>
