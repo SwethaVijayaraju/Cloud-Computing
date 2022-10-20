@@ -11,7 +11,9 @@ docker-compose up
 `
 localhost:80
 `
+- The page will give recommendation from a default meal set
 - Keep refreshing the page to get new recommendations!
+- Add new meal options to the meals database using PGAdmin
 
 ## PG Admin acess:
 `
