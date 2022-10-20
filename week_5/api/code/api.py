@@ -20,6 +20,7 @@ def init_db():
         try:
             conn = psycopg2.connect(database=POSTGRES_DB, user=POSTGRES_USER, password=POSTGRES_PASSWORD,
                                     host=POSTGRES_HOSTNAME, port=POSTGRES_PORT)
+            conn.autocommit = True
             cursor = conn.cursor()
             cursor.execute(open("init.sql", "r").read())
             print("Successfully initialized DB")
