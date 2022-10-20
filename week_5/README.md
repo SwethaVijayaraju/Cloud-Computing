@@ -19,7 +19,9 @@ localhost:8080
 `
 ## PG Admin Login:
 `
-Username: admin@admin.com \n
+Username: admin@admin.com
+`<br/>
+`
 Password: pass
 `
 
