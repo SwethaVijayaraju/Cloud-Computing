@@ -22,7 +22,7 @@ localhost:8080
 ## PG Admin Login:
 ```
 Username: admin@admin.com
-```<br/>
+```
 ```
 Password: pass
 ```
@@ -30,13 +30,13 @@ Password: pass
 ## Add New DB Server
 ```
 Hostname: meals-db
-```<br/>
+```
 ```
 Port: 5432
-```<br/>
+```
 ```
 Username: root
-```<br/>
+```
 ```
 Password: pass
 ```
