@@ -28,16 +28,16 @@ Password: pass
 ## Add New DB Server
 `
 Hostname: meals-db
-`
+`<br/>
 `
 Port: 5432
-`
+`<br/>
 `
 Maintenance database: postgres
-`
+`<br/>
 `
 Username: root
-`
+`<br/>
 `
 Password: pass
 `
