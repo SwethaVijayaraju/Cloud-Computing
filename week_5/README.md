@@ -20,14 +20,24 @@ localhost:8080
 ## PG Admin Login:
 `
 Username: admin@admin.com
+`
+`
 Password: pass
 `
 
 ## Add New DB Server
 `
 Hostname: meals-db
+`
+`
 Port: 5432
+`
+`
 Maintenance database: postgres
+`
+`
 Username: root
+`
+`
 Password: pass
 `
