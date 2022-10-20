@@ -7,7 +7,7 @@ docker-compose build
 docker-compose up
 `
 
-## API Server access:
+## Meals Recommendation Webpage access:
 `
 localhost:80
 `
