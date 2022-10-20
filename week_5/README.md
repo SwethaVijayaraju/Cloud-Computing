@@ -33,9 +33,6 @@ Hostname: meals-db
 Port: 5432
 `<br/>
 `
-Maintenance database: postgres
-`<br/>
-`
 Username: root
 `<br/>
 `
