@@ -19,5 +19,6 @@ def recommend():
     return render_template('index.html', meal=meal)
 
 
-app.run()
+if __name__ == "__main__":
+    app.run()
 
