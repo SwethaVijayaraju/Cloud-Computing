@@ -5,7 +5,7 @@ services:
     image: postgres:12.12
     hostname: ${DB_HOST}
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - ${DB_HOST_PORT}:${DB_CONTAINER_PORT}
     volumes:
       - "./db/init.sql:/docker-entrypoint-initdb.d/init.sql"
       - "./db/data:/var/lib/postgresql/data/"
@@ -21,7 +21,7 @@ services:
     volumes:
       - "./pgadmin:/var/lib/pgadmin"
     ports:
-      - "8080:80"
+      - ${DBA_HOST_PORT}:${DBA_CONTAINER_PORT}
     environment:
       - PGADMIN_DEFAULT_EMAIL=${DBA_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${DBA_PASS}
@@ -33,15 +33,15 @@ services:
     volumes:
       - ./api/code:/app
     ports:
-      - ${API_PORT}:${API_PORT}
+      - ${API_HOST_PORT}:${API_CONTAINER_PORT}
     environment:
       - FLASK_APP=api
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_DB}
       - POSTGRES_HOSTNAME=${DB_HOST}
-      - POSTGRES_PORT=${DB_PORT}
-    command: flask run -h 0.0.0.0 -p ${API_PORT}
+      - POSTGRES_PORT=${DB_CONTAINER_PORT}
+    command: flask run -h 0.0.0.0 -p ${API_CONTAINER_PORT}
   consumer:
     build: ./consumer/
     depends_on:
@@ -50,11 +50,11 @@ services:
     volumes:
       - ./consumer/code:/app
     ports:
-      - ${CONSUMER_PORT}:${CONSUMER_PORT}
+      - ${CONSUMER_HOST_PORT}:${CONSUMER_CONTAINER_PORT}
     environment:
       - FLASK_APP=consumer
       - API_HOST=${API_HOST}
-      - API_PORT=${API_PORT}
+      - API_PORT=${API_CONTAINER_PORT}
       - API_ENDPOINT=/api/v1/recommend_meal
-    command: flask run -h 0.0.0.0 -p ${CONSUMER_PORT}
+    command: flask run -h 0.0.0.0 -p ${CONSUMER_CONTAINER_PORT}
 
