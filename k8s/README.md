@@ -49,7 +49,7 @@ localhost:5000/api/v1/recommend_meal
 kubectl delete -f deploy.yaml
 ```
 
-## Verify:
+## Verify Deployment/Pod Deletion:
 ```
 kubectl get pods 
 kubectl get service
