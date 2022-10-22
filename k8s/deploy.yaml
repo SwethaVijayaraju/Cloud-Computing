@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meals-api
+  labels:
+    app: meals-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meals-api
+  template:
+    metadata:
+      labels:
+        app: meals-api
+    spec:
+      containers:
+        - name: api
+          image: meals-api:v2
+          ports:
+            - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: meals-api
+  name: meals-service
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: meals-api
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meals-frontend
+  labels:
+    app: meals-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meals-frontend
+  template:
+    metadata:
+      labels:
+        app: meals-frontend
+    spec:
+      containers:
+        - name: frontend
+          env:
+          - name: API_HOST
+            value: meals-service
+          - name: API_PORT
+            value: "5000"
+          - name: API_ENDPOINT
+            value: "/api/v1/recommend_meal"
+          image: meals-frontend:v1
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: meals-frontend
+  name: meals-frontend-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: meals-frontend
+  type: LoadBalancer
